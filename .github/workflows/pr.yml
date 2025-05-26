@@ -1,0 +1,33 @@
+name: Run experiment action on PR
+ 
+on:
+  pull_request:
+    types: [opened, synchronize]
+ 
+permissions:
+  pull-requests: write
+  contents: read
+ 
+jobs:
+  eval:
+    name: Run experiment
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+ 
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+ 
+      - name: Run experiments
+        uses: haroldorquesta/test-monorepo-github-actions/action1@v1.0.0
+        with:
+          api_key: ${{ secrets.ORQ_API_KEY }}
+          path: experiments
