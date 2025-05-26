@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: 20
  
-      - name: Run experiments
-        uses: haroldorquesta/test-monorepo-github-actions/action1@v1.0.0
-        with:
-          api_key: ${{ secrets.ORQ_API_KEY }}
-          path: experiments
+      - name: Run action 1
+        uses: haroldorquesta/test-publish-actions/action1@v2.0.2
+
+      - name: Run action 2
+        uses: haroldorquesta/test-publish-actions/action2@v2.0.2
